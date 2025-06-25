@@ -1,5 +1,10 @@
+//Atividade 1 de LAM -> 2º bimestre
+//Realizada em trio:
+//Carlos Alexandre, Miguel Sousa e Thiago Lucas
+
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native'; //Tem que rodar: npm install --save-dev @types/react-native
+
 
 type CustomButtonProps = {
   title: string;

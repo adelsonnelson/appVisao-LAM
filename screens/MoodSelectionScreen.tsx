@@ -1,3 +1,7 @@
+//Atividade 1 de LAM -> 2º bimestre
+//Realizada em trio:
+//Carlos Alexandre, Miguel Sousa e Thiago Lucas
+
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -14,7 +18,7 @@ type Props = {
 };
 
 export default function MoodSelectionScreen({ navigation }: Props) {
-  const handleSelectMood = (mood: 'Feliz' | 'Neutro' | 'Triste') => {
+  const pegarSelectMood = (mood: 'Feliz' | 'Neutro' | 'Triste') => {
     navigation.navigate('Result', { mood });
   };
 
@@ -23,15 +27,15 @@ export default function MoodSelectionScreen({ navigation }: Props) {
       <Text style={styles.title}>Como você está se sentindo hoje?</Text>
       <CustomButton
         title="😄 Feliz"
-        onPress={() => handleSelectMood('Feliz')}
+        onPress={() => pegarSelectMood('Feliz')}
       />
       <CustomButton
         title="😐 Neutro"
-        onPress={() => handleSelectMood('Neutro')}
+        onPress={() => pegarSelectMood('Neutro')}
       />
       <CustomButton
         title="😢 Triste"
-        onPress={() => handleSelectMood('Triste')}
+        onPress={() => pegarSelectMood('Triste')}
       />
     </View>
   );

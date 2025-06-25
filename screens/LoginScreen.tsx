@@ -1,3 +1,8 @@
+//Atividade 1 de LAM -> 2º bimestre
+//Realizada em trio:
+//Carlos Alexandre, Miguel Sousa e Thiago Lucas
+
+
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -5,20 +10,20 @@ import { RootStackParamList } from '../App';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-export default function LoginScreen({ navigation }: Props) {
+export default function LoginScreen({navigation}: Props) {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [senha, setSenha] = useState('');
 
-  const handleLogin = () => {
+  const concluirLogin = () => {
     if (!email.includes('@')) {
-      Alert.alert('Erro', 'Por favor, insira um email válido.');
+      Alert.alert('Erro', 'Insira um email válido.');
       return;
     }
-    if (password.length < 4) {
-      Alert.alert('Erro', 'A senha deve ter pelo menos 4 caracteres.');
+    if (senha.length < 4) {
+      Alert.alert('Erro', 'A senha deve ter 4 ou mais dígitos.');
       return;
     }
-    if (email.toLowerCase() === 'adm@email' && password === '1234') {
+    if (email.toLowerCase() === 'adm@email' && senha === '1234') {
       navigation.navigate('MoodSelection');
     } else {
       Alert.alert('Erro', 'Email ou senha incorretos.');
@@ -38,11 +43,11 @@ export default function LoginScreen({ navigation }: Props) {
       <TextInput
         style={styles.input}
         placeholder="Senha"
-        value={password}
-        onChangeText={setPassword}
+        value={senha}
+        onChangeText={setSenha}
         secureTextEntry
       />
-      <Button title="Entrar" onPress={handleLogin} />
+      <Button title="Entrar" onPress={concluirLogin} />
     </View>
   );
 }

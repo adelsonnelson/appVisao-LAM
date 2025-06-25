@@ -1,3 +1,7 @@
+//Atividade 1 de LAM -> 2º bimestre
+//Realizada em trio:
+//Carlos Alexandre, Miguel Sousa e Thiago Lucas
+
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -6,46 +10,37 @@ import { RootStackParamList } from '../App';
 type Props = NativeStackScreenProps<RootStackParamList, 'Result'>;
 
 export default function ResultScreen({ route, navigation }: Props) {
-  const { mood } = route.params;
-  const [reason, setReason] = useState('');
-  const [moodMessage, setMoodMessage] = useState('');
+  const {mood} = route.params; //É o que traz o mood
+  const [razao, setRazao] = useState('');
+  const [moodMensagem, setMoodMensagem] = useState('');
   const [emoji, setEmoji] = useState('');
 
   useEffect(() => {
-    switch (mood) {
-      case 'Feliz':
-        setMoodMessage('Que bom que você está se sentindo feliz!');
-        setEmoji('😄');
-        break;
-      case 'Neutro':
-        setMoodMessage('Tudo bem não estar sempre bem.');
-        setEmoji('😐');
-        break;
-      case 'Triste':
-        setMoodMessage('Lembre-se que tudo passa. Se precisar, converse com alguém.');
-        setEmoji('😢');
-        break;
+    if (mood === 'Feliz'){
+      setMoodMensagem('Que bom que você está se sentindo feliz!');
+      setEmoji('😄');
+    }else if(mood === 'Neutro') {
+      setMoodMensagem('Tudo bem não estar sempre bem.');
+      setEmoji('😐');
+    }else if (mood === 'Triste') {
+      setMoodMensagem('Lembre-se que tudo passa.');
+      setEmoji('😢');
     }
-  }, [mood]);
+  },);
 
   return (
-    <KeyboardAvoidingView 
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
       <View style={styles.innerContainer}>
         <Text style={styles.emoji}>{emoji}</Text>
-        <Text style={styles.message}>{moodMessage}</Text>
+        <Text style={styles.message}>{moodMensagem}</Text>
         <TextInput
           style={styles.input}
           placeholder="Descreva o que te levou a registrar este humor..."
-          value={reason}
-          onChangeText={setReason}
+          value={razao}
+          onChangeText={setRazao}
           multiline
         />
         <Button title="Voltar" onPress={() => navigation.goBack()} />
       </View>
-    </KeyboardAvoidingView>
   );
 }
 
